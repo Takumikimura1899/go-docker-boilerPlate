@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  go-app:
+    container_name: go-app
+    platform: linux/amd64
+    hostname: localhost
+    ports:
+      - 2345:2345
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    volumes:
+      - .:/go/src/app
+    tty: true
+    env_file:
+      - ./build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
